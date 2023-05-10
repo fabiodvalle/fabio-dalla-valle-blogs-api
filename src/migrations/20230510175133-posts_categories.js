@@ -7,7 +7,7 @@ module.exports = {
    * @param {import('sequelize')} Sequelize
    */
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('post_categories', {
+    await queryInterface.createTable('posts_categories', {
       post_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -34,6 +34,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('post_categories');
+    await queryInterface.dropTable('posts_categories');
   },
 };
