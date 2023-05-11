@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs');
 const { createToken } = require('../auth/authFunctions');
 const userService = require('../services/userService');
 
@@ -11,7 +10,8 @@ module.exports = async (req, res) => {
       return res.status(400).json({ message: 'Some required fields are missing' });
     }
     const user = await userService.getByEmail(email);
-    if (!user || !bcrypt.compareSync(password, user.password)) {
+
+    if (!user || password !== user.dataValues.password) {
       return res.status(400).json({ message: 'Invalid fields' });
     }
     const { password: _password, ...userWithoutPassword } = user.dataValues;

@@ -1,15 +1,21 @@
+const { createToken } = require('../auth/authFunctions');
 const userService = require('../services/userService');
 
 const createUser = async (req, res) => {
   try {
     const { displayName, email, password, image } = req.body;
-    const { data: token } = req.payload;
-    const userExists = userService.getByEmail(email);
-    if (!userExists) {
+    
+    const userExists = await userService.getByEmail(email);
+    console.log(userExists);
+    if (userExists) {
       return res.status(409).json({ message: 'User already registered' });
     }
 
-    await userService.createUser({ displayName, email, password, image });
+    const user = await userService.createUser({ displayName, email, password, image });
+
+    const { password: _password, ...userWithoutPassword } = user.dataValues;
+
+    const token = createToken(userWithoutPassword);
 
     return res.status(201).json({ token });
   } catch (error) {

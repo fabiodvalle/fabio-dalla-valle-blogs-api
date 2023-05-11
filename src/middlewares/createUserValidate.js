@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
   const { displayName, email, password } = req.body;
   const emailRegex = /\S+@\S+.\S+/;
-  if (displayName && displayName.length < 8) {
+  if (!displayName || displayName.length < 8) {
     return res.status(400).json({
     message: '"displayName" length must be at least 8 characters long',
   });
