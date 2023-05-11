@@ -56,10 +56,10 @@ const searchPost = async (q) => {
         { content: { [Op.like]: `%${q}%` } },
       ],
        },
-      //  include: [
-      //   { model: User, as: 'user', attributes: { exclude: ['password'] } },
-      //   { model: Category, as: 'categories', through: { attributes: [] } },
-      // ],
+       include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ],
     },
   );
   // console.log('search', search);

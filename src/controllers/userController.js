@@ -6,7 +6,7 @@ const createUser = async (req, res) => {
     const { displayName, email, password, image } = req.body;
     
     const userExists = await userService.getByEmail(email);
-    console.log(userExists);
+
     if (userExists) {
       return res.status(409).json({ message: 'User already registered' });
     }
