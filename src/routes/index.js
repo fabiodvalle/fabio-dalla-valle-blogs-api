@@ -12,13 +12,13 @@ const updatePostValidate = require('../middlewares/updatePostValidate');
 const blogApiRoutes = express.Router();
 
 blogApiRoutes.post('/login', login);
+blogApiRoutes.delete('/user/me', validateJwt, userController.deleteUser);
 blogApiRoutes.post('/user', createUserValidate, userController.createUser);
 blogApiRoutes.get('/user/:id', validateJwt, userController.getUserById);
 blogApiRoutes.get('/user', validateJwt, userController.getAllUsers);
 
 blogApiRoutes
   .post('/categories', validateJwt, createCategoryValidate, categoryController.createCategory);
-
 blogApiRoutes.get('/categories', validateJwt, categoryController.getAllCategories);
 
 blogApiRoutes.post('/post', validateJwt, blogPostValidate, blogPostController.insert);
