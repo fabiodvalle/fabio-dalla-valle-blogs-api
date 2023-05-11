@@ -25,5 +25,6 @@ blogApiRoutes.post('/post', validateJwt, blogPostValidate, blogPostController.in
 blogApiRoutes.get('/post/:id', validateJwt, blogPostController.getPostById);
 blogApiRoutes.get('/post', validateJwt, blogPostController.getAllPosts);
 blogApiRoutes.put('/post/:id', validateJwt, updatePostValidate, blogPostController.updatePost);
+blogApiRoutes.delete('/post/:id', validateJwt, blogPostController.deletePost);
 
 module.exports = blogApiRoutes;
