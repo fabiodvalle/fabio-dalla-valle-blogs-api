@@ -36,4 +36,13 @@ const getPostById = (id) => BlogPost.findOne({
   ],
 });
 
-module.exports = { insert, categoryExists, getAllPosts, getPostById };
+const updatePost = async (title, content, id) => {
+  await BlogPost.update(
+    { title, content, updated: Date.now() },
+    { where: { id } },
+    );
+  const updatedPost = await getPostById(id);
+  return updatedPost;
+};
+
+module.exports = { insert, categoryExists, getAllPosts, getPostById, updatePost };
