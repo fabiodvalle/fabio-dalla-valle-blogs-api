@@ -16,4 +16,6 @@ blogApiRoutes.get('/user', validateJwt, userController.getAllUsers);
 blogApiRoutes
   .post('/categories', validateJwt, createCategoryValidate, categoryController.createCategory);
 
+blogApiRoutes.get('/categories', validateJwt, categoryController.getAllCategories);
+
 module.exports = blogApiRoutes;
