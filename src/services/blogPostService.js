@@ -23,7 +23,7 @@ const insert = async ({ title, content, userId, categoryIds }) => {
 
 const getAllPosts = () => BlogPost.findAll({
   include: [
-    // { model: User, as: 'user', through: { attributes: [] } },
+    { model: User, as: 'user', attributes: { exclude: ['password'] } },
     { model: Category, as: 'categories', through: { attributes: [] } },
   ],
 });
