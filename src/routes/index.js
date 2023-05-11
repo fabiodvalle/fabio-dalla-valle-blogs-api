@@ -5,6 +5,8 @@ const validateJwt = require('../middlewares/validateJwt');
 const createUserValidate = require('../middlewares/createUserValidate');
 const categoryController = require('../controllers/categoryController');
 const createCategoryValidate = require('../middlewares/createCategoryValidate');
+const blogPostController = require('../controllers/blogPostController');
+const blogPostValidate = require('../middlewares/blogPostValidate');
 
 const blogApiRoutes = express.Router();
 
@@ -17,5 +19,7 @@ blogApiRoutes
   .post('/categories', validateJwt, createCategoryValidate, categoryController.createCategory);
 
 blogApiRoutes.get('/categories', validateJwt, categoryController.getAllCategories);
+
+blogApiRoutes.post('/post', validateJwt, blogPostValidate, blogPostController.insert);
 
 module.exports = blogApiRoutes;

@@ -8,9 +8,11 @@ const BlogPost = (sequelize, DataTypes) => {
       updated: DataTypes.DATE,
     },
     {
-      tableName: 'blog_post',
+      tableName: 'blog_posts',
       underscored: true,
-      timestamps: false,
+      timestamps: true,
+      updatedAt: 'updated',
+      createdAt: 'published',
     },
   );
 
