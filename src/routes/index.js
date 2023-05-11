@@ -21,6 +21,7 @@ blogApiRoutes
   .post('/categories', validateJwt, createCategoryValidate, categoryController.createCategory);
 blogApiRoutes.get('/categories', validateJwt, categoryController.getAllCategories);
 
+blogApiRoutes.get('/post/search', validateJwt, blogPostController.searchPost);
 blogApiRoutes.post('/post', validateJwt, blogPostValidate, blogPostController.insert);
 blogApiRoutes.get('/post/:id', validateJwt, blogPostController.getPostById);
 blogApiRoutes.get('/post', validateJwt, blogPostController.getAllPosts);
