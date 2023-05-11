@@ -8,6 +8,7 @@ const blogApiRoutes = express.Router();
 
 blogApiRoutes.post('/login', login);
 blogApiRoutes.post('/user', createUserValidate, userController.createUser);
+blogApiRoutes.get('/user/:id', validateJwt, userController.getUserById);
 blogApiRoutes.get('/user', validateJwt, userController.getAllUsers);
 
 module.exports = blogApiRoutes;
