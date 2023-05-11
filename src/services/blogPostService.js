@@ -1,4 +1,4 @@
-const { BlogPost, PostCategory, sequelize } = require('../models');
+const { User, Category, BlogPost, PostCategory, sequelize } = require('../models');
 const categoryService = require('./categoryService');
 
 const categoryExists = async (categoryIds) => {
@@ -21,4 +21,11 @@ const insert = async ({ title, content, userId, categoryIds }) => {
   return result;
 };
 
-module.exports = { insert, categoryExists };
+const getAllPosts = () => BlogPost.findAll({
+  include: [
+    // { model: User, as: 'user', through: { attributes: [] } },
+    { model: Category, as: 'categories', through: { attributes: [] } },
+  ],
+});
+
+module.exports = { insert, categoryExists, getAllPosts };

@@ -17,4 +17,10 @@ const insert = async (req, res) => {
   return res.status(201).json(blogPost);
 };
 
-module.exports = { insert };
+const getAllPosts = async (req, res) => {
+  const posts = await blogPostService.getAllPosts();
+
+  return res.status(200).json(posts);
+};
+
+module.exports = { insert, getAllPosts };
